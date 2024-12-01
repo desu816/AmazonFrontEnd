@@ -1,33 +1,54 @@
 import React, { useEffect, useState } from 'react'; 
-import classes from './ProductDetail.module.css';
-import Layout from '../../Components/Layout/Layout';
+import Layout from '../../Components/LayOut/LayOut';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { productUrl } from '../../Api/endPoints';
-import ProductCard from '../../Component/Product/ProductCard';
-import Loader from '../../Components/Loader/Loader';
-
+import ProductCard from '../../Components/Product/ProductCard';
 
 function ProductDetail() {
-    const {productId} = useParams()
-    const [product, setproduct] = useState({})
-   useEffect(() => {
+    const { productId } = useParams();
+
+    const [product, setProduct] = useState({});
     
-    axios.get(`${productUrl}/products/${productId}`)
-    .then((res)=>{
-        setproduct(res.data)
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState(null);
 
-    }).catch((err)=>{
-        console.log(err)
-    })
-   },[])
-    return (
-    <Layout>
-        <ProductCard
-        product={product}
-        />
+    useEffect(() => {
+        console.log("Fetching product details for ID:", productId);
+        axios.get(`${productUrl}/products/${productId}`)
+            .then((res) => {
+                console.log("API Response:", res.data);
+                setProduct(res.data);
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                console.error("API Error:", err.response?.data || err.message);
+                setError('Failed to load product details.');
+                setIsLoading(false);
+            });
+    }, [productId]);
 
-        </Layout>
-    )
+    if (isLoading) {
+        return (
+            <Layout>
+                <p>Loading product details...</p>
+            </Layout>
+        );
     }
-export default ProductDetail
+
+    if (error) {
+        return (
+            <Layout>
+                <p>Error: {error}</p>
+            </Layout>
+        );
+    }
+
+    return (
+        <Layout>
+            <ProductCard product={product} />
+        </Layout>
+    );
+}
+
+export default ProductDetail;
