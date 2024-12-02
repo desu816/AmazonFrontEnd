@@ -1,38 +1,3 @@
-// import CurrencyFormat from '../CurrencyFormat/CurrencyFormat';
-// import { Link } from 'react-router-dom'; 
-// import Rating from '@mui/material/Rating'; 
-// import classes from './Product.module.css';
-
-// function ProductCard({ product, flex, renderDesc }) {
-//   const { image, title, id, rating, price, description} = product;
-//   console.log(product);
-
- 
-//   const productRating = rating ? rating.rate : 0; 
-//   return (
-//     <div className={`${classes.card_container} ${flex?classes.product_flexed : ''}`}>
-//       <Link to={`/products/${id}`}> 
-//         <img src={image} alt="" className={classes.img_container} />
-//       </Link>
-//       <div>
-//         <h3>{title}</h3>
-//         {renderDesc && <div style={{maxWidth:"750px"}}>{description}</div>}
-//         <div className={classes.rating}>
-//           <Rating value={rating?.rate} precision={0.1} /> 
-//           <small>{rating?.count}</small> 
-//         </div>
-//         <div>
-//           {/* Price */}
-//           <CurrencyFormat amount={price} />
-//         </div>
-//         <button className={classes.button}>Add to Cart</button>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default ProductCard;
-
 import CurrencyFormat from '../CurrencyFormat/CurrencyFormat';
 import { Link } from 'react-router-dom'; 
 import Rating from '@mui/material/Rating'; 
@@ -43,11 +8,11 @@ import { Type } from '../../Utility/actiontype';
 
 function ProductCard({ product, flex, renderDesc }) {
   const { image, title, id, rating, price, description } = product;
-  const{state, dispatch}=useContext(DataContext)
+  const [state, dispatch]=useContext(DataContext)
   console.log(state)
   const addToCart =()=>{
     dispatch({
-      type:Type.ADD_TO_BaASKET,
+      type:Type.ADD_TO_BASKET,
       item:{
         image, title, id, rating, price, description 
       }
@@ -56,8 +21,8 @@ function ProductCard({ product, flex, renderDesc }) {
  
   const productRating = rating?.rate || 0;
   const productCount = rating?.count || 0;
-  const productImage = image || 'default-image-url.jpg'; // Fallback image URL
-  const productDescription = description || 'No description available.'; // Fallback description
+  const productImage = image || 'default-image-url.jpg'; 
+  const productDescription = description || 'No description available.'; 
 
   return (
     <div className={`${classes.card_container} ${flex ? classes.product_flexed : ''}`}>

@@ -10,7 +10,7 @@ import { DataContext } from "../DataProvider/DataProvider";
 const Header = () => {
   const [{ basket }] = useContext(DataContext);
 
-  console.log(basket); // Debug log to see what `basket` contains
+  console.log(basket); 
 
   const basketLength = Array.isArray(basket) ? basket.length : 0;
 
