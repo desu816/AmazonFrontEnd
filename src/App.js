@@ -1,7 +1,7 @@
 
 
 
-import Routing from "./Router";
+import Routing from "./Routing";
 
 function App() {
   return (

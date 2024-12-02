@@ -4,17 +4,27 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { productUrl } from '../../Api/endPoints';
 import ProductCard from '../../Components/Product/ProductCard';
+import Loader from '../../Components/Loader/Loader';
 
 function ProductDetail() {
     const { productId } = useParams();
 
     const [product, setProduct] = useState({});
-    
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    console.log('Product ID:', productId);
+
     useEffect(() => {
+        if (!productId) {
+            setError('Invalid product ID.');
+            setIsLoading(false);
+            return;
+        }
+
+        setIsLoading(true);
         console.log("Fetching product details for ID:", productId);
+
         axios.get(`${productUrl}/products/${productId}`)
             .then((res) => {
                 console.log("API Response:", res.data);
@@ -31,7 +41,7 @@ function ProductDetail() {
     if (isLoading) {
         return (
             <Layout>
-                <p>Loading product details...</p>
+                <Loader />
             </Layout>
         );
     }
@@ -46,7 +56,11 @@ function ProductDetail() {
 
     return (
         <Layout>
-            <ProductCard product={product} />
+            <ProductCard 
+                product={product} 
+                flex={true} 
+                renderDesc={true} 
+            />
         </Layout>
     );
 }
