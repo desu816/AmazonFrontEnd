@@ -15,7 +15,7 @@ const Header = () => {
   const basketLength = Array.isArray(basket) ? basket.length : 0;
 
   return (
-    <>
+    <section className={classes.fixed}>
       <section>
         <div className={classes.header_container}>
           <div className={classes.logo_container}>
@@ -70,7 +70,7 @@ const Header = () => {
         </div>
       </section>
       <LowerHeader />
-    </>
+    </section>
   );
 };
 
