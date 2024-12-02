@@ -1,5 +1,5 @@
 import React from 'react'
-import { BsJustify } from 'react-icons/bs'
+// import { BsJustify } from 'react-icons/bs'
 import {FadeLoader} from 'react-spinners'
 
 function Loader () {
