@@ -9,10 +9,12 @@ import { DataContext } from "../DataProvider/DataProvider";
 
 const Header = () => {
   const [{ basket }] = useContext(DataContext);
+  const totalItem = basket?.reduce((amount,item)=>{
+    return item.amount + amount
+  },0)
+    
 
-  console.log(basket); 
-
-  const basketLength = Array.isArray(basket) ? basket.length : 0;
+  const basketLength = Array.isArray(basket) ? totalItem : 0;
 
   return (
     <section className={classes.fixed}>
