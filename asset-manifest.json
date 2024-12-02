@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/AmazonFrontEnd/static/css/main.7a263537.css",
+    "main.js": "/AmazonFrontEnd/static/js/main.8f58339f.js",
+    "static/media/10003.jpg": "/AmazonFrontEnd/static/media/10003.c914c0c9e43c17916041.jpg",
+    "static/media/10001.jpg": "/AmazonFrontEnd/static/media/10001.16833de55a457502d21a.jpg",
+    "static/media/10002.jpg": "/AmazonFrontEnd/static/media/10002.805821d23a3f63566f17.jpg",
+    "index.html": "/AmazonFrontEnd/index.html",
+    "main.7a263537.css.map": "/AmazonFrontEnd/static/css/main.7a263537.css.map",
+    "main.8f58339f.js.map": "/AmazonFrontEnd/static/js/main.8f58339f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7a263537.css",
+    "static/js/main.8f58339f.js"
+  ]
+}
